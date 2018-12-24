@@ -127,7 +127,17 @@ namespace LiranNachmanPeer2PeerChat
             {
                 string path = AppDomain.CurrentDomain.BaseDirectory + fileName;
 
-                System.IO.File.WriteAllBytes(path, dataimage);
+                if (extention.Equals(".txt"))
+                {
+                    string dataencode = Encoding.UTF8.GetString(dataimage);
+
+                    System.IO.File.WriteAllText(path, dataencode);
+
+                }
+                else
+                {
+                    System.IO.File.WriteAllBytes(path, dataimage);
+                }
 
                 System.Diagnostics.Process.Start(path);
 
