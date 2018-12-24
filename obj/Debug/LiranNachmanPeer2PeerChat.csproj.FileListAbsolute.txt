@@ -1,0 +1,10 @@
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\bin\Debug\LiranNachmanPeer2PeerChat.exe.config
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\bin\Debug\LiranNachmanPeer2PeerChat.exe
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\bin\Debug\LiranNachmanPeer2PeerChat.pdb
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.csprojAssemblyReference.cache
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.Form1.resources
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.Properties.Resources.resources
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.csproj.GenerateResource.cache
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.csproj.CoreCompileInputs.cache
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.exe
+C:\Users\liran\source\repos\LiranNachmanPeer2PeerChat\obj\Debug\LiranNachmanPeer2PeerChat.pdb

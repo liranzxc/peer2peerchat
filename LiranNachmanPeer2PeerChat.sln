@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiranNachmanPeer2PeerChat", "LiranNachmanPeer2PeerChat.csproj", "{5E88BAB2-30A0-4EFA-B4F7-576DF1BF2B90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E88BAB2-30A0-4EFA-B4F7-576DF1BF2B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E88BAB2-30A0-4EFA-B4F7-576DF1BF2B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E88BAB2-30A0-4EFA-B4F7-576DF1BF2B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E88BAB2-30A0-4EFA-B4F7-576DF1BF2B90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA7F9D16-D6A7-401A-8D87-1568FBF3D062}
+	EndGlobalSection
+EndGlobal
