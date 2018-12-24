@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.clearSelect = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.sendfile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,9 +66,11 @@
             this.messagebox.Name = "messagebox";
             this.messagebox.Size = new System.Drawing.Size(436, 29);
             this.messagebox.TabIndex = 2;
+            this.messagebox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messagebox_KeyDown);
             // 
             // send
             // 
+            this.send.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.send.Location = new System.Drawing.Point(498, 536);
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(87, 29);
@@ -84,7 +87,7 @@
             this.mylist.Location = new System.Drawing.Point(529, 89);
             this.mylist.Name = "mylist";
             this.mylist.ScrollAlwaysVisible = true;
-            this.mylist.Size = new System.Drawing.Size(216, 404);
+            this.mylist.Size = new System.Drawing.Size(216, 224);
             this.mylist.TabIndex = 4;
             // 
             // label2
@@ -100,11 +103,11 @@
             // clearSelect
             // 
             this.clearSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearSelect.Location = new System.Drawing.Point(529, 499);
+            this.clearSelect.Location = new System.Drawing.Point(529, 330);
             this.clearSelect.Name = "clearSelect";
             this.clearSelect.Size = new System.Drawing.Size(216, 31);
             this.clearSelect.TabIndex = 6;
-            this.clearSelect.Text = "Send to all";
+            this.clearSelect.Text = "Clear Select";
             this.clearSelect.UseVisualStyleBackColor = true;
             this.clearSelect.Click += new System.EventHandler(this.clearSelect_Click);
             // 
@@ -118,11 +121,23 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "  select to private message";
             // 
+            // sendfile
+            // 
+            this.sendfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendfile.Location = new System.Drawing.Point(591, 536);
+            this.sendfile.Name = "sendfile";
+            this.sendfile.Size = new System.Drawing.Size(82, 29);
+            this.sendfile.TabIndex = 8;
+            this.sendfile.Text = "sendfile";
+            this.sendfile.UseVisualStyleBackColor = true;
+            this.sendfile.Click += new System.EventHandler(this.sendfile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 586);
+            this.Controls.Add(this.sendfile);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.clearSelect);
             this.Controls.Add(this.label2);
@@ -132,7 +147,7 @@
             this.Controls.Add(this.chatbox);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "p2p Liran Nachman Chat";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,6 +163,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button clearSelect;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button sendfile;
     }
 }
 
