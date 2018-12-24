@@ -34,13 +34,15 @@
             this.send = new System.Windows.Forms.Button();
             this.mylist = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.clearSelect = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(69, 28);
+            this.label1.Location = new System.Drawing.Point(71, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(308, 31);
             this.label1.TabIndex = 0;
@@ -66,7 +68,7 @@
             // 
             // send
             // 
-            this.send.Location = new System.Drawing.Point(513, 536);
+            this.send.Location = new System.Drawing.Point(498, 536);
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(87, 29);
             this.send.TabIndex = 3;
@@ -88,17 +90,41 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(536, 43);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(593, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(96, 29);
             this.label2.TabIndex = 5;
             this.label2.Text = "user list";
+            // 
+            // clearSelect
+            // 
+            this.clearSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearSelect.Location = new System.Drawing.Point(529, 499);
+            this.clearSelect.Name = "clearSelect";
+            this.clearSelect.Size = new System.Drawing.Size(216, 31);
+            this.clearSelect.TabIndex = 6;
+            this.clearSelect.Text = "Send to all";
+            this.clearSelect.UseVisualStyleBackColor = true;
+            this.clearSelect.Click += new System.EventHandler(this.clearSelect_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(525, 57);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(231, 24);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "  select to private message";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 586);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.clearSelect);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.mylist);
             this.Controls.Add(this.send);
@@ -120,6 +146,8 @@
         private System.Windows.Forms.Button send;
         private System.Windows.Forms.ListBox mylist;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button clearSelect;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -15,7 +15,7 @@ namespace LiranNachmanPeer2PeerChat
 {
     public partial class Form1 : Form
     {
-        private Dictionary<string,string> userlist = new Dictionary<string,string>();
+        private Dictionary<IPEndPoint, string> userlist = new Dictionary<IPEndPoint, string>();
         private int _port = 28000;
 
         private string _multicastGroupAddress = "239.1.1.1";
@@ -28,7 +28,7 @@ namespace LiranNachmanPeer2PeerChat
         private void UpdateMessages(IPEndPoint sender, string message)
         {
 
-            chatbox.Text += $"{userlist[sender.ToString()]} | {message}\r\n";
+            chatbox.Text += $"{userlist[sender]} | {message}\r\n";
         }
 
         public Form1()
@@ -50,9 +50,9 @@ namespace LiranNachmanPeer2PeerChat
                     if (dataencode.StartsWith("@"))
                     { // someone new enter the chat 
 
-                        if(!userlist.ContainsKey(sentBy.ToString()))
+                        if(!userlist.ContainsKey(sentBy))
                         {
-                            userlist.Add(sentBy.ToString(), dataencode.Substring(1));
+                            userlist.Add(sentBy, dataencode.Substring(1));
                             updateListUser();
 
                             //now need to send back a message we get his message 
@@ -69,7 +69,7 @@ namespace LiranNachmanPeer2PeerChat
                         if(dataencode.StartsWith("%"))
                         {
                             // someone exit 
-                            userlist.Remove(sentBy.ToString());
+                            userlist.Remove(sentBy);
                             updateListUser();
 
                         }
@@ -97,14 +97,25 @@ namespace LiranNachmanPeer2PeerChat
             Thread t = new Thread(SendOpeningMessage);
             t.Start();
 
+            mylist.SelectionMode = SelectionMode.One;
+
 
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var data = Encoding.UTF8.GetBytes(messagebox.Text);
-            _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
+            if (mylist.SelectedItems.Count > 0)
+            {
+                var data = Encoding.UTF8.GetBytes("Private***: " +messagebox.Text);
+                _sender.Send(data, data.Length, userlist.Keys.ToList()[mylist.SelectedIndex]);
+            }
+            else
+            {
+                var data = Encoding.UTF8.GetBytes(messagebox.Text);
+                _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
+
+            }
         }
 
         protected override void OnClosed(EventArgs e)
@@ -153,5 +164,9 @@ namespace LiranNachmanPeer2PeerChat
 
         }
 
+        private void clearSelect_Click(object sender, EventArgs e)
+        {
+            mylist.ClearSelected();
+        }
     }
 }
