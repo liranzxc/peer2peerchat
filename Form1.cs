@@ -57,7 +57,7 @@ namespace LiranNachmanPeer2PeerChat
 
                             //now need to send back a message we get his message 
 
-                            // back message
+                            // back message hello back
                             Thread back = new Thread(SendOpeningMessage);
                             back.Start();
 
@@ -91,6 +91,9 @@ namespace LiranNachmanPeer2PeerChat
 
             Thread t = new Thread(SendOpeningMessage);
             t.Start();
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -99,6 +102,23 @@ namespace LiranNachmanPeer2PeerChat
             _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            Thread left = new Thread(LeftMessage);
+            left.Start();
+
+
+            base.OnClosed(e);
+        }
+
+     
+
+        public void LeftMessage()
+        {
+            string alias = "exit";
+            var data = Encoding.UTF8.GetBytes("%" + alias);
+            _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
+        }
 
         private void SendOpeningMessage()
         {
@@ -108,6 +128,7 @@ namespace LiranNachmanPeer2PeerChat
 
         }
 
+        
         
         private static IPAddress GetLocalIPAddress()
         {

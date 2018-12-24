@@ -48,25 +48,27 @@
             // 
             // chatbox
             // 
+            this.chatbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatbox.Location = new System.Drawing.Point(56, 89);
             this.chatbox.Multiline = true;
             this.chatbox.Name = "chatbox";
+            this.chatbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chatbox.Size = new System.Drawing.Size(436, 425);
             this.chatbox.TabIndex = 1;
             // 
             // messagebox
             // 
+            this.messagebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messagebox.Location = new System.Drawing.Point(56, 536);
-            this.messagebox.Multiline = true;
             this.messagebox.Name = "messagebox";
-            this.messagebox.Size = new System.Drawing.Size(436, 38);
+            this.messagebox.Size = new System.Drawing.Size(436, 29);
             this.messagebox.TabIndex = 2;
             // 
             // send
             // 
             this.send.Location = new System.Drawing.Point(513, 536);
             this.send.Name = "send";
-            this.send.Size = new System.Drawing.Size(87, 38);
+            this.send.Size = new System.Drawing.Size(87, 29);
             this.send.TabIndex = 3;
             this.send.Text = "Send";
             this.send.UseVisualStyleBackColor = true;
@@ -74,10 +76,13 @@
             // 
             // mylist
             // 
+            this.mylist.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mylist.FormattingEnabled = true;
+            this.mylist.ItemHeight = 20;
             this.mylist.Location = new System.Drawing.Point(529, 89);
             this.mylist.Name = "mylist";
-            this.mylist.Size = new System.Drawing.Size(216, 420);
+            this.mylist.ScrollAlwaysVisible = true;
+            this.mylist.Size = new System.Drawing.Size(216, 404);
             this.mylist.TabIndex = 4;
             // 
             // label2
