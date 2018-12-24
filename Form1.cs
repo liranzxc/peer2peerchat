@@ -66,19 +66,24 @@ namespace LiranNachmanPeer2PeerChat
                     }
                     else
                     { 
-                        
-                        
-                        
-                        
-                        
-                        // normal message
-                        chatbox.BeginInvoke(
-                       new Action<IPEndPoint, string>(UpdateMessages),
-                       sentBy,
-                      dataencode);
-                    }
+                        if(dataencode.StartsWith("%"))
+                        {
+                            // someone exit 
+                            userlist.Remove(sentBy.ToString());
+                            updateListUser();
 
-                   
+                        }
+                        else
+                        {
+                            // normal message
+                            chatbox.BeginInvoke(
+                           new Action<IPEndPoint, string>(UpdateMessages),
+                           sentBy,
+                          dataencode);
+                        }
+
+                    }
+                       
                 }
             });
             _receiveThread.IsBackground = true;
