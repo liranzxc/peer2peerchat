@@ -48,12 +48,19 @@ namespace LiranNachmanPeer2PeerChat
                     string dataencode = Encoding.UTF8.GetString(dataGram);
 
                     if (dataencode.StartsWith("@"))
-                    { // someone enter the chat 
+                    { // someone new enter the chat 
 
                         if(!userlist.ContainsKey(sentBy.ToString()))
                         {
                             userlist.Add(sentBy.ToString(), dataencode.Substring(1));
                             updateListUser();
+
+                            //now need to send back a message we get his message 
+
+                            // back message
+                            Thread back = new Thread(SendOpeningMessage);
+                            back.Start();
+
                         }
 
                     }
@@ -100,6 +107,8 @@ namespace LiranNachmanPeer2PeerChat
             _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
 
         }
+
+        
         private static IPAddress GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
