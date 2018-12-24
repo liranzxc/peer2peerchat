@@ -46,14 +46,14 @@ namespace LiranNachmanPeer2PeerChat
                 {
                     IPEndPoint sentBy = new IPEndPoint(IPAddress.Any, _port);
                     var dataGram = _receiver.Receive(ref sentBy);
-                    string dataencode = Encoding.Unicode.GetString(dataGram);
+                    string dataencode = Encoding.UTF8.GetString(dataGram);
 
                     if(dataencode.StartsWith("File"))
                     {
                         string[] paths = dataencode.Split('@');
                         string extention = paths[1];
 
-                        int lengthtoSkip = Encoding.Unicode.GetByteCount("File@" + extention + "@");
+                        int lengthtoSkip = Encoding.UTF8.GetByteCount("File@" + extention + "@");
                         byte[] bytesToUse = dataGram.Skip(lengthtoSkip).ToArray();
 
                         //File@extention@bytes
@@ -129,7 +129,7 @@ namespace LiranNachmanPeer2PeerChat
 
                 if (extention.Equals(".txt"))
                 {
-                    string dataencode = Encoding.Unicode.GetString(dataimage);
+                    string dataencode = Encoding.UTF8.GetString(dataimage);
 
                     System.IO.File.WriteAllText(path, dataencode);
 
@@ -156,13 +156,13 @@ namespace LiranNachmanPeer2PeerChat
         {
             if (mylist.SelectedItems.Count > 0)
             {
-                var data = Encoding.Unicode.GetBytes("Private***: " +messagebox.Text);
+                var data = Encoding.UTF8.GetBytes("Private***: " +messagebox.Text);
                 var adress = userlist.Keys.ToList()[mylist.SelectedIndex].Address;
                 _sender.Send(data, data.Length, new IPEndPoint(adress, _port));
             }
             else
             {
-                var data = Encoding.Unicode.GetBytes(messagebox.Text);
+                var data = Encoding.UTF8.GetBytes(messagebox.Text);
                 _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
 
             }
@@ -184,7 +184,7 @@ namespace LiranNachmanPeer2PeerChat
         public void LeftMessage()
         {
             string alias = "exit";
-            var data = Encoding.Unicode.GetBytes("%" + alias);
+            var data = Encoding.UTF8.GetBytes("%" + alias);
             _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
             _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port)); // control
         }
@@ -192,7 +192,7 @@ namespace LiranNachmanPeer2PeerChat
         private void SendOpeningMessage()
         {
             string alias = "liran";
-            var data = Encoding.Unicode.GetBytes("@"+alias);
+            var data = Encoding.UTF8.GetBytes("@"+alias);
             _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
 
         }
@@ -244,7 +244,7 @@ namespace LiranNachmanPeer2PeerChat
                 string title = "File@" + extention + "@";
                 
 
-                byte [] titlebuffer = Encoding.Unicode.GetBytes(title);
+                byte [] titlebuffer = Encoding.UTF8.GetBytes(title);
 
                 byte[] final = new byte[titlebuffer.Length + buffer.Length];
 
