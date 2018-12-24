@@ -20,7 +20,7 @@ namespace LiranNachmanPeer2PeerChat
         private int _port = 28000;
 
         private string _multicastGroupAddress = "239.1.1.1";
-
+        private string alias = "No name ";
         private UdpClient _sender;
         private UdpClient _receiver;
 
@@ -36,6 +36,9 @@ namespace LiranNachmanPeer2PeerChat
         {
             InitializeComponent();
 
+            ShowInputDialog(ref alias);
+
+
             _receiver = new UdpClient();
             _receiver.JoinMulticastGroup(IPAddress.Parse(_multicastGroupAddress));
             _receiver.Client.Bind(new IPEndPoint(IPAddress.Any, _port));
@@ -48,7 +51,7 @@ namespace LiranNachmanPeer2PeerChat
                     var dataGram = _receiver.Receive(ref sentBy);
                     string dataencode = Encoding.UTF8.GetString(dataGram);
 
-                    if(dataencode.StartsWith("File"))
+                    if (dataencode.StartsWith("File"))
                     {
                         string[] paths = dataencode.Split('@');
                         string extention = paths[1];
@@ -61,43 +64,43 @@ namespace LiranNachmanPeer2PeerChat
                         CreateAndOpenFile(extention, bytesToUse);
                     }
                     else
-                    { 
-                    if (dataencode.StartsWith("@"))
-                    { // someone new enter the chat 
+                    {
+                        if (dataencode.StartsWith("@"))
+                        { // someone new enter the chat 
 
-                        if(!userlist.ContainsKey(sentBy))
-                        {
-                            userlist.Add(sentBy, dataencode.Substring(1));
-                            updateListUser();
+                            if (!userlist.ContainsKey(sentBy))
+                            {
+                                userlist.Add(sentBy, dataencode.Substring(1));
+                                updateListUser();
 
-                            //now need to send back a message we get his message 
+                                //now need to send back a message we get his message 
 
-                            // back message hello back
-                            Thread back = new Thread(SendOpeningMessage);
-                            back.Start();
+                                // back message hello back
+                                Thread back = new Thread(SendOpeningMessage);
+                                back.Start();
 
-                        }
-
-                    }
-                    else
-                    { 
-                        if(dataencode.StartsWith("%"))
-                        {
-                            // someone exit 
-                            userlist.Remove(sentBy);
-                            updateListUser();
+                            }
 
                         }
                         else
                         {
-                            // normal message
-                            chatbox.BeginInvoke(
-                           new Action<IPEndPoint, string>(UpdateMessages),
-                           sentBy,
-                          dataencode);
-                        }
+                            if (dataencode.StartsWith("%"))
+                            {
+                                // someone exit 
+                                userlist.Remove(sentBy);
+                                updateListUser();
 
-                    }
+                            }
+                            else
+                            {
+                                // normal message
+                                chatbox.BeginInvoke(
+                               new Action<IPEndPoint, string>(UpdateMessages),
+                               sentBy,
+                              dataencode);
+                            }
+
+                        }
                     }
                 }
             });
@@ -120,8 +123,8 @@ namespace LiranNachmanPeer2PeerChat
 
         private void CreateAndOpenFile(string extention, byte[] dataimage)
         {
-           // read file
-            string fileName = "newFile"+new Random().Next(100000).ToString()+extention;
+            // read file
+            string fileName = "newFile" + new Random().Next(100000).ToString() + extention;
 
             try
             {
@@ -156,7 +159,7 @@ namespace LiranNachmanPeer2PeerChat
         {
             if (mylist.SelectedItems.Count > 0)
             {
-                var data = Encoding.UTF8.GetBytes("Private***: " +messagebox.Text);
+                var data = Encoding.UTF8.GetBytes("Private***: " + messagebox.Text);
                 var adress = userlist.Keys.ToList()[mylist.SelectedIndex].Address;
                 _sender.Send(data, data.Length, new IPEndPoint(adress, _port));
             }
@@ -179,7 +182,7 @@ namespace LiranNachmanPeer2PeerChat
             base.OnClosed(e);
         }
 
-     
+
 
         public void LeftMessage()
         {
@@ -191,8 +194,7 @@ namespace LiranNachmanPeer2PeerChat
 
         private void SendOpeningMessage()
         {
-            string alias = "liran";
-            var data = Encoding.UTF8.GetBytes("@"+alias);
+            var data = Encoding.UTF8.GetBytes("@" + alias);
             _sender.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, _port));
 
         }
@@ -209,7 +211,8 @@ namespace LiranNachmanPeer2PeerChat
         {
             mylist.Items.Clear();
 
-            userlist.Values.ToList().ForEach(item => {
+            userlist.Values.ToList().ForEach(item =>
+            {
 
                 mylist.Items.Add(item);
             });
@@ -237,14 +240,14 @@ namespace LiranNachmanPeer2PeerChat
 
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-               byte [] buffer = File.ReadAllBytes(openFileDialog1.FileName);
+                byte[] buffer = File.ReadAllBytes(openFileDialog1.FileName);
 
-               string extention = Path.GetExtension(openFileDialog1.FileName);
+                string extention = Path.GetExtension(openFileDialog1.FileName);
 
                 string title = "File@" + extention + "@";
-                
 
-                byte [] titlebuffer = Encoding.UTF8.GetBytes(title);
+
+                byte[] titlebuffer = Encoding.UTF8.GetBytes(title);
 
                 byte[] final = new byte[titlebuffer.Length + buffer.Length];
 
@@ -269,5 +272,47 @@ namespace LiranNachmanPeer2PeerChat
 
             }
         }
+
+
+        private static DialogResult ShowInputDialog(ref string input)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(400, 70);
+            Form inputBox = new Form();
+
+            //inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = "Name";
+            inputBox.StartPosition = FormStartPosition.CenterScreen;
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
+        }
+
     }
 }

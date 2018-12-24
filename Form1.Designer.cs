@@ -70,13 +70,16 @@
             // 
             // send
             // 
+            this.send.BackColor = System.Drawing.SystemColors.Control;
+            this.send.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.send.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.send.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.send.Location = new System.Drawing.Point(498, 536);
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(87, 29);
             this.send.TabIndex = 3;
             this.send.Text = "Send";
-            this.send.UseVisualStyleBackColor = true;
+            this.send.UseVisualStyleBackColor = false;
             this.send.Click += new System.EventHandler(this.button1_Click);
             // 
             // mylist
@@ -126,9 +129,9 @@
             this.sendfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sendfile.Location = new System.Drawing.Point(591, 536);
             this.sendfile.Name = "sendfile";
-            this.sendfile.Size = new System.Drawing.Size(82, 29);
+            this.sendfile.Size = new System.Drawing.Size(108, 29);
             this.sendfile.TabIndex = 8;
-            this.sendfile.Text = "sendfile";
+            this.sendfile.Text = "Send File";
             this.sendfile.UseVisualStyleBackColor = true;
             this.sendfile.Click += new System.EventHandler(this.sendfile_Click);
             // 
@@ -136,6 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(776, 586);
             this.Controls.Add(this.sendfile);
             this.Controls.Add(this.label3);
